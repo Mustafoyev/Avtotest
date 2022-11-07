@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<title>Avtotest</title>
+	</head>
+	<body>
+		<main>
+			<section>
+				<div class="container">
+					<h1 class="hedding"></h1>
+					<div class="content">
+						<select class="select-level">
+							<option value="" disabled selected>Choose level</option>
+							<option value="Easy">Easy</option>
+							<option value="Medium">Medium</option>
+							<option value="Hard">Hard</option>
+						</select>
+						<select class="select-time">
+							<option value="" disabled selected>Choose time</option>
+							<option value="1min">1-min</option>
+							<option value="3min">3-min</option>
+							<option value="5min">5-min</option>
+						</select>
+						<button class="start-btn">Start</button>
+					</div>
+					<div class="game-content">
+						<div class="time-count">
+							<span class="count"></span>
+							<span class="time"></span>
+						</div>
+						<div class="render-content">
+							<strong class="title"></strong>
+
+							<ul class="js-list list"></ul>
+						</div>
+					</div>
+					<audio class="answer" src="./sounds/answer.mp3"></audio>
+					<audio class="error" src="./sounds/erro.mp3"></audio>
+					<audio class="game-over" src="./sounds/game-over.wav"></audio>
+					<audio class="winner" src="./sounds/Win.mp3"></audio>
+				</div>
+			</section>
+		</main>
+		<script src="./js/data.js"></script>
+		<script src="./js/main.js"></script>
+	</body>
+</html>
