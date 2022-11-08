@@ -97,16 +97,18 @@ elStartBtn.addEventListener('click', function () {
 			}, 10 * 1000);
 		}, 50 * 1000);
 
-		setTimeout(() => {
-			elGameContent.style.display = 'none';
-			elHedding.style.display = 'block';
-			elHedding.textContent = `Your score ${count}`;
-			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
-			elAudioGameOver.play();
+		if (newArray.length) {
 			setTimeout(() => {
-				window.location.reload();
-			}, 5000);
-		}, 61 * 1000);
+				elGameContent.style.display = 'none';
+				elHedding.style.display = 'block';
+				elHedding.textContent = `Your score ${count}`;
+				document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
+				elAudioGameOver.play();
+				setTimeout(() => {
+					window.location.reload();
+				}, 5000);
+			}, 62 * 1000);
+		}
 	}
 
 	if (elSelTime.value == '3min') {
@@ -166,16 +168,19 @@ elStartBtn.addEventListener('click', function () {
 				}, 10 * 1000);
 			}, 50 * 1000);
 		}, 122 * 1000);
-		setTimeout(() => {
-			elGameContent.style.display = 'none';
-			elHedding.style.display = 'block';
-			elHedding.textContent = `Your score ${count}`;
-			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
-			elAudioGameOver.play();
+
+		if (newArray.length) {
 			setTimeout(() => {
-				window.location.reload();
-			}, 5000);
-		}, 183 * 1000);
+				elGameContent.style.display = 'none';
+				elHedding.style.display = 'block';
+				elHedding.textContent = `Your score ${count}`;
+				document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
+				elAudioGameOver.play();
+				setTimeout(() => {
+					window.location.reload();
+				}, 5000);
+			}, 184 * 1000);
+		}
 	}
 	if (elSelTime.value == '5min') {
 		elTime.textContent = '05:00';
@@ -273,36 +278,37 @@ elStartBtn.addEventListener('click', function () {
 			}, 50 * 1000);
 		}, 244 * 1000);
 
-		setTimeout(() => {
-			elGameContent.style.display = 'none';
-			elHedding.style.display = 'block';
-			elHedding.textContent = `Your score ${count}`;
-			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
-			elAudioGameOver.play();
+		if (newArray.length) {
 			setTimeout(() => {
-				window.location.reload();
-			}, 5000);
-		}, 305 * 1000);
+				elGameContent.style.display = 'none';
+				elHedding.style.display = 'block';
+				elHedding.textContent = `Your score ${count}`;
+				document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
+				elAudioGameOver.play();
+				setTimeout(() => {
+					window.location.reload();
+				}, 5000);
+			}, 306 * 1000);
+		}
 	}
 });
 
 elList.addEventListener('click', (evt) => {
 	if (evt.target.matches('.item')) {
 		if (evt.target.dataset.id == elTitle.dataset.id) {
+			elAudioCorrect.play();
+			evt.target.style.backgroundColor = 'green';
+			elCount.textContent = `Count: ${(count += 3)}`;
+			setTimeout(() => {
+				evt.target.style.visibility = 'hidden';
+			}, 1000);
 			newArray.forEach((el) => {
 				if (el.id == evt.target.dataset.id) {
 					let finded = newArray.findIndex((item) => item == el);
 					newArray.splice(finded, 1);
 					renderTitle(newArray, elTitle);
-					console.log(newArray);
 				}
 			});
-			evt.target.style.backgroundColor = 'green';
-			elAudioCorrect.play();
-			elCount.textContent = `Count: ${(count += 3)}`;
-			setTimeout(() => {
-				evt.target.style.visibility = 'hidden';
-			}, 1000);
 			if (!newArray.length) {
 				setTimeout(() => {
 					elGameContent.style.display = 'none';
@@ -312,8 +318,8 @@ elList.addEventListener('click', (evt) => {
 					elWinner.play();
 					setTimeout(() => {
 						window.location.reload();
-					}, 5000);
-				}, 3000);
+					}, 5 * 1000);
+				}, 1000);
 			}
 		} else {
 			evt.target.style.backgroundColor = 'red';
