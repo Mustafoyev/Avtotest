@@ -41,10 +41,11 @@ function renderTitle(arr, node) {
 elStartBtn.addEventListener('click', function () {
 	if (elSelLevel.value == 'Easy') {
 		for (i = 0; i < 20; i++) {
-			if (newArray.includes(array[Math.floor(Math.random() * array.length)])) {
+			let includItem = array[Math.floor(Math.random() * array.length)];
+			if (newArray.includes(includItem)) {
 				i--;
 			} else {
-				newArray.push(array[Math.floor(Math.random() * array.length)]);
+				newArray.push(includItem);
 			}
 		}
 		render(newArray, elList);
@@ -53,8 +54,11 @@ elStartBtn.addEventListener('click', function () {
 
 	if (elSelLevel.value == 'Medium') {
 		for (i = 0; i < 30; i++) {
-			if (newArray[i] != array[i]) {
-				newArray.push(array[Math.floor(Math.random() * array.length)]);
+			let includItem = array[Math.floor(Math.random() * array.length)];
+			if (newArray.includes(includItem)) {
+				i--;
+			} else {
+				newArray.push(includItem);
 			}
 		}
 		render(newArray, elList);
@@ -63,8 +67,11 @@ elStartBtn.addEventListener('click', function () {
 
 	if (elSelLevel.value == 'Hard') {
 		for (i = 0; i < 40; i++) {
-			if (newArray[i] != array[i]) {
-				newArray.push(array[Math.floor(Math.random() * array.length)]);
+			let includItem = array[Math.floor(Math.random() * array.length)];
+			if (newArray.includes(includItem)) {
+				i--;
+			} else {
+				newArray.push(includItem);
 			}
 		}
 		render(newArray, elList);
@@ -92,6 +99,8 @@ elStartBtn.addEventListener('click', function () {
 
 		setTimeout(() => {
 			elGameContent.style.display = 'none';
+			elHedding.style.display = 'block';
+			elHedding.textContent = `Your score ${count}`;
 			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
 			elAudioGameOver.play();
 			setTimeout(() => {
@@ -159,6 +168,8 @@ elStartBtn.addEventListener('click', function () {
 		}, 122 * 1000);
 		setTimeout(() => {
 			elGameContent.style.display = 'none';
+			elHedding.style.display = 'block';
+			elHedding.textContent = `Your score ${count}`;
 			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
 			elAudioGameOver.play();
 			setTimeout(() => {
@@ -261,6 +272,17 @@ elStartBtn.addEventListener('click', function () {
 				}, 10 * 1000);
 			}, 50 * 1000);
 		}, 244 * 1000);
+
+		setTimeout(() => {
+			elGameContent.style.display = 'none';
+			elHedding.style.display = 'block';
+			elHedding.textContent = `Your score ${count}`;
+			document.body.style.backgroundImage = `url('../images/Game-over.webp')`;
+			elAudioGameOver.play();
+			setTimeout(() => {
+				window.location.reload();
+			}, 5000);
+		}, 305 * 1000);
 	}
 });
 
@@ -284,13 +306,14 @@ elList.addEventListener('click', (evt) => {
 			if (!newArray.length) {
 				setTimeout(() => {
 					elGameContent.style.display = 'none';
+					elHedding.style.display = 'block';
 					elHedding.textContent = `Your score ${count}`;
 					document.body.style.backgroundImage = `url('../images/win.jpg')`;
 					elWinner.play();
 					setTimeout(() => {
 						window.location.reload();
 					}, 5000);
-				}, 5000);
+				}, 3000);
 			}
 		} else {
 			evt.target.style.backgroundColor = 'red';
